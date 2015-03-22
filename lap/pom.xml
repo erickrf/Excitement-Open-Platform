@@ -147,6 +147,29 @@
      		<artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-de-maxent</artifactId>
      		<version>20120616.0</version>
     	</dependency>
+        
+      <dependency>
+              <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+              <artifactId>de.tudarmstadt.ukp.dkpro.core.treetagger-model-pt</artifactId>
+              <version>20101115.0</version>
+      </dependency>
+      
+        <dependency>
+            <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+            <artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-tagger-pt-maxent</artifactId>
+            <version>20120616.1</version>
+      </dependency>
+      <dependency>
+          <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+          <artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-pt-maxent</artifactId>
+          <version>20120616.1</version>
+      </dependency>
+      <dependency>
+          <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+          <artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-pt-maxent</artifactId>
+          <version>20120616.1</version>
+      </dependency>
+        
     	<!--  the following 3 models are Italian models, trained by FBK; they exists only on project repository -->
     	<dependency>
      		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
