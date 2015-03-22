@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,6 +20,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+
 
 
 import eu.excitementproject.eop.lap.implbase.RawDataFormatReader;
@@ -114,7 +116,8 @@ public class ExperimenterFileUtils {
 		try {
 			
 			OutputStream out = Files.newOutputStream(Paths.get(file));
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+			OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+//			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 			writer.write("<entailment-corpus lang=\"" + language + "\">\n");
@@ -158,7 +161,8 @@ public class ExperimenterFileUtils {
 		try {
 			
 			OutputStream out = Files.newOutputStream(Paths.get(file));
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+			OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+//			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 			writer.write("<entailment-corpus lang=\"" + language + "\">\n");
@@ -175,7 +179,7 @@ public class ExperimenterFileUtils {
 	
 	
 	// iterate through classes if necessary, and write data to file
-	private static void writeData(HashMap<String, Set<PairXMLData>> instances, BufferedWriter writer) throws IOException {
+	private static void writeData(HashMap<String, Set<PairXMLData>> instances, Writer writer) throws IOException {
 		
 		for(String key : instances.keySet()) {
 			writeData(instances.get(key), writer);
@@ -184,7 +188,7 @@ public class ExperimenterFileUtils {
 	
 
 	// write RTE pairs to file
-	private static void writeData(Set<PairXMLData> instances, BufferedWriter writer) throws IOException {
+	private static void writeData(Set<PairXMLData> instances, Writer writer) throws IOException {
 
 		Logger logger = Logger.getLogger("eu.excitementproject.eda-exp.experimenter.ExperimenterFileUtils / writeDataToFile");
 		logger.info("\twriting " + instances.size() + " pairs");

@@ -31,12 +31,13 @@ public class EDAScorer {
 	static Logger logger = Logger.getLogger(EDAScorer.class
 			.getName());
 	
-	public static void score(File resultFile, String outputFile) {
+	public static float score(File resultFile, String outputFile) {
 		BufferedReader input;
 		float pos_corrt = 0f;
 		float pos_wrong = 0f;
 		float neg_corrt = 0f;
 		float neg_wrong = 0f;
+		float Accuracy = 0;
 		try {
 			input = new BufferedReader(new InputStreamReader(new FileInputStream(resultFile), "UTF-8"));
 			String line = "";
@@ -88,7 +89,7 @@ public class EDAScorer {
 			float NonEntailmentPrecision = neg_corrt / (neg_corrt + pos_wrong);
 			float NonEntailmentRecall = neg_corrt / NonEntailmentGold;
 			float NonEntailmentFMeasure = 2 * NonEntailmentPrecision * NonEntailmentRecall / (NonEntailmentPrecision + NonEntailmentRecall);
-			float Accuracy = (pos_corrt + neg_corrt) / Sum;
+			Accuracy = (pos_corrt + neg_corrt) / Sum;
 			
 			// output the result into an XML file
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -176,6 +177,8 @@ public class EDAScorer {
 		} catch (Exception e) {
 			logger.warning(e.getMessage());
 		}
+		
+		return Accuracy;
 	}
 	
 	@Test

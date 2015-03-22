@@ -66,6 +66,9 @@ public class EOPRunner {
 
 	private Visualizer visualizer = null;
 	
+	// used to compute the final score after cross-validation 
+	private float accumulatedScore = 0;
+	
 	/**
 	 * @param args
 	 */
@@ -343,8 +346,16 @@ public class EOPRunner {
 			if (xmlResultsFile == null) {
 				xmlResultsFile = availableResultsFile.replaceAll(".txt$", ".xml");
 			}
-
-			scoreResults(availableResultsFile,Paths.get(availableResultsFile + "_report.xml"));			
+			
+			String reportFile;
+			if (option.xval > 1)
+			{
+			    // use one result file for each fold
+			    reportFile = option.testFile + "_report.xml";
+			} else {
+			    reportFile = availableResultsFile + "_report.xml";
+			}
+			scoreResults(availableResultsFile,Paths.get(reportFile));
 
 			if (option.testFile != null) {
 				logger.info("Results file -- XML format: " + xmlResultsFile);
@@ -360,7 +371,7 @@ public class EOPRunner {
 	
 	
 	public void scoreResults(String resultsFile, Path target) {
-		EDAScorer.score(new File(resultsFile), target.toString());
+		accumulatedScore += EDAScorer.score(new File(resultsFile), target.toString());
 		logger.info("Results file: " + resultsFile);
 		logger.info("Evaluation file: " + target.toString());
 	}

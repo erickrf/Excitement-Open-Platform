@@ -64,4 +64,10 @@ public class EOPRunnerCmdOptions {
 	@Option(name="-trace", usage="Produce output (one file per pair) that allows the visualization of the alignment. Only usable with an alignment EDA")
 	public boolean trace = false;
 	
+	/**
+	 * Not fully implemented yet
+	 */
+	@Option(name="-xval", usage="Cross validate with a value greater than 1")
+	public int xval = 1;
+	
 }

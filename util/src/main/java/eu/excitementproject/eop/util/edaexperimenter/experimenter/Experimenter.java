@@ -182,7 +182,10 @@ public class Experimenter {
 			ExperimenterFileUtils.writeDataToFile(dataTrain, thisTrainFile, language);
 			
 			// make the list of arguments for the EOPRunner
-			String[] args =  new String[] {"-config", options.config, "-train", "-trainFile", thisTrainFile, "-test", "-testFile", thisTestFile, "-output", options.output, "-score"};
+			String xvalString = Integer.toString(options.xval);
+			String[] args =  new String[] {"-config", options.config, "-train", "-trainFile", thisTrainFile, 
+			        "-test", "-testFile", thisTestFile, "-output", options.output, "-score",
+			        "-xval", xvalString};
 			
 			logger.info("Running the EOP with arguments: " + StringUtils.join(args," "));
 
